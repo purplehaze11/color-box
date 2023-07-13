@@ -1,20 +1,17 @@
-import ColorUnit from './ColorUnit.jsx'
 import { useState } from 'react';
 
+function randColor(arr) {
+    const idx = Math.floor(Math.random() * arr.length)
+    return arr[idx]
+}
+
 function ColorBox({ colors }) {
-    const [isColor, setIsColor] = useState(0);
-    const lengthy = colors.length - 1
+
+    const [isColor, setIsColor] = useState(randColor(colors));
     const changeColor = () => {
-        if (isColor >= lengthy) {
-            setIsColor(isColor - lengthy)
-        } else {
-            setIsColor(isColor + 1)
-        }
+        setIsColor(randColor(colors))
     }
-    return (
-        <>
-            <ColorUnit click={changeColor} bgColor={colors[isColor]} />
-        </>)
+    return <div className='w-40 h-40' onClick={changeColor} style={{ backgroundColor: isColor }}></div >
 }
 
 export default ColorBox
